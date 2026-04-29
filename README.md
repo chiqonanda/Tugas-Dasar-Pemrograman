@@ -68,14 +68,17 @@ Desa Pampang berlokasi di Samarinda, Kalimantan Timur. Dalam operasionalnya, des
 
 ---
 
-## Profil Kelompok
+## Kontributor
 
-| NIM | Nama | Kelas |
-|:---:|:---:|:---:|
-| 2409116045 | Muhammad Rizky Febrianto | Sistem Informasi B 2024 |
-| 2409116046 | Chiqo Nanda Rial Pratama | Sistem Informasi B 2024 |
-| 2409116069 | Daffa Syahrani Husain | Sistem Informasi B 2024 |
-| 2409116072 | Marcela | Sistem Informasi B 2024 |
+<div align="center">
+
+| Muhammad Rizky Febrianto | Chiqo Nanda Rial Pratama | Daffa Syahrani Husain | Marcela |
+|:---:|:---:|:---:|:---:|
+| <img src="https://via.placeholder.com/150/8B1A1A/FFFFFF?text=MRF" width="120" height="120"> | <img src="https://via.placeholder.com/150/D4A017/1A0A00?text=CNR" width="120" height="120"> | <img src="https://via.placeholder.com/150/8B1A1A/FFFFFF?text=DSH" width="120" height="120"> | <img src="https://via.placeholder.com/150/D4A017/1A0A00?text=MCL" width="120" height="120"> |
+| **2409116045** | **2409116046** | **2409116069** | **2409116072** |
+| Sistem Informasi B '24 | Sistem Informasi B '24 | Sistem Informasi B '24 | Sistem Informasi B '24 |
+
+</div>
 
 ---
 
@@ -481,20 +484,6 @@ C:.
 </div>
 
 *Laman Manajemen Kontak menyediakan antarmuka pengelolaan alamat, jam operasional, harga wisata, dan kontak resmi desa.*
-
----
-
-## Kontributor
-
-<div align="center">
-
-| Muhammad Rizky Febrianto | Chiqo Nanda Rial Pratama | Daffa Syahrani Husain | Marcela |
-|:---:|:---:|:---:|:---:|
-| <img src="https://via.placeholder.com/150/8B1A1A/FFFFFF?text=MRF" width="120" height="120"> | <img src="https://via.placeholder.com/150/D4A017/1A0A00?text=CNR" width="120" height="120"> | <img src="https://via.placeholder.com/150/8B1A1A/FFFFFF?text=DSH" width="120" height="120"> | <img src="https://via.placeholder.com/150/D4A017/1A0A00?text=MCL" width="120" height="120"> |
-| **2409116045** | **2409116046** | **2409116069** | **2409116072** |
-| Sistem Informasi B '24 | Sistem Informasi B '24 | Sistem Informasi B '24 | Sistem Informasi B '24 |
-
-</div>
 
 ---
 
