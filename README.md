@@ -260,74 +260,120 @@ http://localhost/desa-wisata-pampang/login
 
 ```text
 desa-wisata-pampang/
-├── app/
-│   ├── core/                        # Komponen inti custom framework
-│   │   ├── bootstrap.php            # Entry point, autoloader, dan inisialisasi routing
-│   │   ├── Controller.php           # Base controller (view, redirect, session, JSON)
-│   │   ├── Database.php             # Singleton database dengan konfigurasi ENV
-│   │   └── Router.php               # Router berbasis array dengan error handling
-│   ├── controllers/                 # Pengendali alur request per modul
-│   │   ├── AdminController.php      # Dashboard dan navigasi halaman admin
-│   │   ├── AgendaController.php     # CRUD agenda kegiatan
-│   │   ├── AuthController.php       # Login, logout, session management
-│   │   ├── GaleriController.php     # Upload, edit, hapus foto galeri
-│   │   ├── KontakController.php     # Simpan data kontak
-│   │   ├── PasswordController.php   # Ubah password admin
-│   │   ├── PostinganController.php  # CRUD artikel dan berita
-│   │   └── PublicController.php     # Halaman publik (beranda, tentang, publikasi, kontak)
-│   ├── models/                      # Akses dan logika data
-│   │   ├── AgendaModel.php
-│   │   ├── GaleriModel.php
-│   │   ├── KontakModel.php
-│   │   ├── PostinganModel.php
-│   │   └── UserModel.php
-│   └── views/                       # Template tampilan
-│       ├── public/
-│       │   ├── beranda/
-│       │   ├── tentang/
-│       │   ├── publikasi/
-│       │   └── kontak/
-│       ├── admin/
-│       │   ├── agenda/
-│       │   ├── galeri/
-│       │   ├── postingan/
-│       │   ├── kontak/
-│       │   ├── dashboard.php
-│       │   ├── login.php
-│       │   └── password.php
-│       └── errors/                  # Halaman error (404, 500, generic)
-├── public/                          # Web root
-│   ├── index.php                    # Entry point aplikasi
-│   ├── .htaccess                    # URL rewriting Apache
-│   ├── assets/
-│   │   ├── css/
-│   │   │   ├── style.css            # Stylesheet utama publik
-│   │   │   ├── dayak-theme.css      # Tema visual Dayak Kenyah (palet merah–emas, ornamen)
-│   │   │   ├── admin.css            # Stylesheet panel admin
-│   │   │   ├── bootstrap_min.css    # Bootstrap 5 (bundle lokal)
-│   │   │   └── bootstrap-icons_min.css
-│   │   ├── js/
-│   │   │   ├── main.js              # JS publik (navbar, parallax, audio, scroll reveal, 3D tilt)
-│   │   │   ├── admin.js             # JS admin (modal, file drop, tab switch, search, toast)
-│   │   │   ├── bootstrap_bundle_min.js
-│   │   │   └── vue_global_prod.js   # Vue 3 global build (bundle lokal)
-│   │   ├── img/                     # Aset visual statis
-│   │   │   ├── lamin.svg            # Ilustrasi rumah lamin Dayak
-│   │   │   ├── lamin-potrait.svg
-│   │   │   ├── tarian.svg           # Ilustrasi tarian tradisional
-│   │   │   ├── susur-sungai.svg     # Ilustrasi wisata susur sungai
-│   │   │   ├── motif_dayak.svg      # Ornamen motif Dayak
-│   │   │   └── logo_pesona_indonesia.svg
-│   │   ├── fonts/                   # Font lokal (Inter, Playfair Display)
-│   │   └── audio/
-│   │       └── dayak.mp3            # Musik latar budaya Dayak
-│   └── uploads/                     # File upload dari admin
-│       ├── galeri/
-│       └── postingan/
-├── sql/                             # Skema dan data awal basis data
-├── documentation/
-│   └── readme-screenshots/          # Cuplikan antarmuka untuk README
-└── README.md
+C:.
+│   .htaccess
+│   download_assets.ps1
+│   index.php
+│   README.md
+│   
+├───app
+│   ├───controllers
+│   │       AdminController.php
+│   │       AgendaController.php
+│   │       AuthController.php
+│   │       GaleriController.php
+│   │       KontakController.php
+│   │       PasswordController.php
+│   │       PostinganController.php
+│   │       PublicController.php
+│   │       
+│   ├───core
+│   │       bootstrap.php
+│   │       Controller.php
+│   │       Database.php
+│   │       Router.php
+│   │       
+│   ├───models
+│   │       AgendaModel.php
+│   │       GaleriModel.php
+│   │       KontakModel.php
+│   │       PostinganModel.php
+│   │       UserModel.php
+│   │       
+│   └───views
+│       ├───admin
+│       │   │   dashboard.php
+│       │   │   login.php
+│       │   │   password.php
+│       │   │   
+│       │   ├───agenda
+│       │   │       index.php
+│       │   │       
+│       │   ├───galeri
+│       │   │       index.php
+│       │   │       
+│       │   ├───kontak
+│       │   │       index.php
+│       │   │       
+│       │   ├───partials
+│       │   │       footer.php
+│       │   │       header.php
+│       │   │       
+│       │   └───postingan
+│       │           index.php
+│       │           
+│       ├───errors
+│       │       403.php
+│       │       404.php
+│       │       500.php
+│       │       generic.php
+│       │       
+│       └───public
+│           ├───beranda
+│           │       index.php
+│           │       
+│           ├───kontak
+│           │       index.php
+│           │       
+│           ├───partials
+│           │       footer.php
+│           │       header.php
+│           │       
+│           ├───publikasi
+│           │       index.php
+│           │       
+│           └───tentang
+│                   index.php
+│                   
+└───public
+    ├───assets
+    │   ├───audio
+    │   │       dayak.mp3
+    │   │       
+    │   ├───css
+    │   │       admin.css
+    │   │       bootstrap-icons.min.css
+    │   │       bootstrap.min.css
+    │   │       dayak-theme.css
+    │   │       style.css
+    │   │       
+    │   ├───fonts
+    │   │       bootstrap-icons.woff
+    │   │       bootstrap-icons.woff2
+    │   │       
+    │   ├───images
+    │   │       lamin-potrait.svg
+    │   │       lamin.svg
+    │   │       logo pesona indonesia.svg
+    │   │       logo-pesona-indonesia-putih.svg
+    │   │       motif dayak.svg
+    │   │       susur-sungai.svg
+    │   │       tarian.svg
+    │   │       
+    │   └───js
+    │           admin.js
+    │           bootstrap.bundle.min.js
+    │           main.js
+    │           vue.global.prod.js
+    │           
+    └───uploads
+        │   .htaccess
+        │   
+        ├───galeri
+        │       .htaccess
+        │       
+        └───postingan
+                .htaccess
 ```
 
 </details>
