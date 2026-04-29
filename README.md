@@ -20,20 +20,33 @@ Repositori ini memuat dokumentasi resmi pengembangan situs web profil wisata **D
 
 ---
 
+## Kontributor
+
+<div align="center">
+
+| Muhammad Rizky Febrianto | Chiqo Nanda Rial Pratama | Daffa Syahrani Husain | Marcela |
+|:---:|:---:|:---:|:---:|
+| <img src="https://via.placeholder.com/150/8B1A1A/FFFFFF?text=MRF" width="120" height="120"> | <img src="https://via.placeholder.com/150/D4A017/1A0A00?text=CNR" width="120" height="120"> | <img src="https://via.placeholder.com/150/8B1A1A/FFFFFF?text=DSH" width="120" height="120"> | <img src="https://via.placeholder.com/150/D4A017/1A0A00?text=MCL" width="120" height="120"> |
+| **2409116045** | **2409116046** | **2409116069** | **2409116072** |
+| Sistem Informasi B '24 | Sistem Informasi B '24 | Sistem Informasi B '24 | Sistem Informasi B '24 |
+
+</div>
+
+---
+
 ## Daftar Isi
 
+- [Kontributor](#kontributor)
 - [Daftar Isi](#daftar-isi)
 - [Deskripsi Situs Web](#deskripsi-situs-web)
 - [Kunjungi Website Pampang](#kunjungi-website-pampang)
 - [Profil Mitra](#profil-mitra)
-- [Profil Kelompok](#profil-kelompok)
 - [Peta Laman Dan Arsitektur Informasi](#peta-laman-dan-arsitektur-informasi)
 - [Fitur Utama Situs](#fitur-utama-situs)
 - [Penggunaan Bootstrap 5 Dan Vue.js](#penggunaan-bootstrap-5-dan-vuejs)
 - [Cara Instalasi Dan Setup Lokal](#cara-instalasi-dan-setup-lokal)
 - [Struktur Proyek](#struktur-proyek)
 - [Cuplikan Antarmuka Situs](#cuplikan-antarmuka-situs)
-- [Kontributor](#kontributor)
 - [Verifikasi Kesesuaian Instruksi Proyek Akhir](#verifikasi-kesesuaian-instruksi-proyek-akhir)
 
 ---
@@ -66,19 +79,6 @@ Website ini dirancang agar pengunjung dapat memahami kekayaan budaya Desa Pampan
 
 Desa Pampang berlokasi di Samarinda, Kalimantan Timur. Dalam operasionalnya, desa wisata ini menyelenggarakan pertunjukan tarian tradisional, pameran kerajinan tangan, dan kegiatan budaya lainnya secara rutin. Situs web ini disusun untuk menjawab kebutuhan informasi publik yang paling sering dicari pengunjung: profil dan konteks wisata, jadwal agenda kegiatan, dokumentasi visual, publikasi berita, serta kanal komunikasi resmi pengelola.
 
----
-
-## Kontributor
-
-<div align="center">
-
-| Muhammad Rizky Febrianto | Chiqo Nanda Rial Pratama | Daffa Syahrani Husain | Marcela |
-|:---:|:---:|:---:|:---:|
-| <img src="https://via.placeholder.com/150/8B1A1A/FFFFFF?text=MRF" width="120" height="120"> | <img src="https://via.placeholder.com/150/D4A017/1A0A00?text=CNR" width="120" height="120"> | <img src="https://via.placeholder.com/150/8B1A1A/FFFFFF?text=DSH" width="120" height="120"> | <img src="https://via.placeholder.com/150/D4A017/1A0A00?text=MCL" width="120" height="120"> |
-| **2409116045** | **2409116046** | **2409116069** | **2409116072** |
-| Sistem Informasi B '24 | Sistem Informasi B '24 | Sistem Informasi B '24 | Sistem Informasi B '24 |
-
-</div>
 
 ---
 
