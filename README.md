@@ -24,9 +24,10 @@ Repositori ini memuat dokumentasi resmi pengembangan situs web profil wisata **D
 
 <div align="center">
 
-| Muhammad Rizky Febrianto | Chiqo Nanda Rial Pratama | Daffa Syahrani Husain | Marcela |
+| Muhammad Rizky Febrianto | Chiqo Nanda Rial Pratama | Daffa Syahrandy Husain | Marcela Persa Linthin  |
 |:---:|:---:|:---:|:---:|
-| <img src="https://via.placeholder.com/150/8B1A1A/FFFFFF?text=MRF" width="120" height="120"> | <img src="https://via.placeholder.com/150/D4A017/1A0A00?text=CNR" width="120" height="120"> | <img src="https://via.placeholder.com/150/8B1A1A/FFFFFF?text=DSH" width="120" height="120"> | <img src="https://via.placeholder.com/150/D4A017/1A0A00?text=MCL" width="120" height="120"> |
+| <img width="120" height="120" alt="image" src="https://github.com/user-attachments/assets/f7b1fc90-c4f6-4dec-aba7-22302facdb82" />  |  <img width="120" height="120" alt="image" src="https://github.com/user-attachments/assets/7e3c1968-4f0b-4fac-9230-f0d4efb2ab26" /> | <img width="120" height="120" alt="image" src="https://github.com/user-attachments/assets/63138184-b71c-4397-9ee5-61844d2c0105" /> | <img width="720" height="961" alt="image" src="https://github.com/user-attachments/assets/919c6bf0-e7ad-41ac-9ff1-8578206282d1" />
+
 | **2409116045** | **2409116046** | **2409116069** | **2409116072** |
 | Sistem Informasi B '24 | Sistem Informasi B '24 | Sistem Informasi B '24 | Sistem Informasi B '24 |
 
