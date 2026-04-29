@@ -27,7 +27,6 @@ Repositori ini memuat dokumentasi resmi pengembangan situs web profil wisata **D
 | Muhammad Rizky Febrianto | Chiqo Nanda Rial Pratama | Daffa Syahrandy Husain | Marcela Persa Linthin  |
 |:---:|:---:|:---:|:---:|
 | <img width="120" height="120" alt="image" src="https://github.com/user-attachments/assets/f7b1fc90-c4f6-4dec-aba7-22302facdb82" />  |  <img width="120" height="120" alt="image" src="https://github.com/user-attachments/assets/7e3c1968-4f0b-4fac-9230-f0d4efb2ab26" /> | <img width="120" height="120" alt="image" src="https://github.com/user-attachments/assets/63138184-b71c-4397-9ee5-61844d2c0105" /> | <img width="120" height="120" alt="image" src="https://github.com/user-attachments/assets/919c6bf0-e7ad-41ac-9ff1-8578206282d1" />
-
 | **2409116045** | **2409116046** | **2409116069** | **2409116072** |
 | Sistem Informasi B '24 | Sistem Informasi B '24 | Sistem Informasi B '24 | Sistem Informasi B '24 |
 
