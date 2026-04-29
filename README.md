@@ -29,8 +29,11 @@ Repositori ini memuat dokumentasi resmi pengembangan situs web profil wisata **D
 - [Profil Kelompok](#profil-kelompok)
 - [Peta Laman Dan Arsitektur Informasi](#peta-laman-dan-arsitektur-informasi)
 - [Fitur Utama Situs](#fitur-utama-situs)
+- [Penggunaan Bootstrap 5 Dan Vue.js](#penggunaan-bootstrap-5-dan-vuejs)
+- [Cara Instalasi Dan Setup Lokal](#cara-instalasi-dan-setup-lokal)
 - [Struktur Proyek](#struktur-proyek)
 - [Cuplikan Antarmuka Situs](#cuplikan-antarmuka-situs)
+- [Kontributor](#kontributor)
 - [Verifikasi Kesesuaian Instruksi Proyek Akhir](#verifikasi-kesesuaian-instruksi-proyek-akhir)
 
 ---
@@ -106,8 +109,147 @@ Desa Pampang berlokasi di Samarinda, Kalimantan Timur. Dalam operasionalnya, des
 | Upload Gambar | Mendukung unggahan file gambar (JPG/PNG/WEBP/GIF, maks. 5MB) dan input URL eksternal |
 | Autentikasi Admin | Login berbasis session dengan regenerasi ID session dan proteksi session fixation |
 | Ganti Password Admin | Fitur ubah password dengan validasi password lama dan konfirmasi password baru |
+| Tema Dayak Kenyah | Antarmuka bertema budaya Dayak dengan palet warna merah–emas dan ornamen motif tradisional |
+| Audio Latar Budaya | Pemutar audio musik Dayak yang dapat diaktifkan pengunjung dari tombol navbar |
+| Scroll Reveal & Parallax | Animasi scroll reveal dan efek parallax hero section untuk pengalaman visual yang imersif |
 | Arsitektur MVC | Custom framework PHP native dengan pemisahan Controller, Model, View, dan Router |
 | Error Handling | Halaman error khusus (404, 500, dll.) dengan pesan berbahasa Indonesia |
+
+---
+
+## Penggunaan Bootstrap 5 Dan Vue.js
+
+### ⚙️ Bootstrap 5
+
+Bootstrap 5 digunakan sebagai fondasi sistem grid dan komponen UI pada seluruh halaman publik maupun panel admin. Namun demikian, sebagian besar komponen visual — termasuk navbar, card, galeri, dan panel admin — dibangun dengan CSS kustom (`style.css`, `dayak-theme.css`, `admin.css`) untuk menghasilkan identitas visual bertema Dayak Kenyah yang tidak tersedia pada komponen Bootstrap bawaan.
+
+Bootstrap dimanfaatkan terutama untuk:
+
+- **Sistem grid responsif** — layout multi-kolom pada laman beranda, galeri, dan kontak menggunakan `col-md-*` dan `col-lg-*`
+- **Utilitas spacing & display** — kelas seperti `d-flex`, `gap-*`, `p-*`, `mb-*` untuk efisiensi penulisan CSS
+- **Komponen form** — struktur input dan tombol pada panel admin dibangun di atas elemen Bootstrap
+- **Responsivitas breakpoint** — penyesuaian tampilan otomatis lintas perangkat desktop, tablet, dan mobile
+
+File Bootstrap di-*bundle* secara lokal (`bootstrap_min.css`, `bootstrap_bundle_min.js`) sehingga situs dapat berjalan tanpa ketergantungan CDN eksternal.
+
+---
+
+### 🟩 Vue.js
+
+Vue.js (versi Global Build, `vue_global_prod.js`) digunakan pada komponen interaktif yang memerlukan reaktivitas data tanpa me-*refresh* halaman. Pendekatan ini dipilih agar integrasi Vue tetap ringan tanpa memerlukan build tool seperti Vite atau Webpack.
+
+Vue dimanfaatkan terutama untuk:
+
+- **Komponen kalender agenda** — menampilkan dan memfilter jadwal kegiatan budaya secara interaktif berdasarkan bulan dan tanggal yang dipilih pengunjung pada laman Kontak
+- **Reaktivitas data kontak** — menampilkan informasi jam operasional, harga, dan kontak secara dinamis tanpa reload halaman
+
+Komponen Vue dideklarasikan langsung di dalam template HTML menggunakan pola `createApp` dari Vue 3 global build, sehingga dapat diintegrasikan ke dalam sistem MVC PHP native tanpa perubahan pada arsitektur backend.
+
+---
+
+## Cara Instalasi Dan Setup Lokal
+
+### Prasyarat
+
+Pastikan lingkungan pengembangan memiliki komponen berikut sebelum memulai:
+
+- **PHP** >= 7.4 dengan ekstensi `mysqli` dan `fileinfo` aktif
+- **MySQL** >= 5.7 atau **MariaDB** >= 10.3
+- **Apache** dengan modul `mod_rewrite` aktif (untuk URL rewriting via `.htaccess`)
+- **Git** untuk kloning repositori
+
+> Disarankan menggunakan **XAMPP**, **Laragon**, atau **WAMP** untuk setup lokal di Windows.
+
+---
+
+### Langkah Instalasi
+
+**1. Klon repositori**
+
+```bash
+git clone https://github.com/username/desa-wisata-pampang.git
+cd desa-wisata-pampang
+```
+
+> Letakkan folder proyek di dalam direktori web root, misalnya `htdocs/` (XAMPP) atau `www/` (Laragon).
+
+---
+
+**2. Buat database dan impor skema**
+
+Buka **phpMyAdmin** atau klien MySQL, kemudian:
+
+```sql
+CREATE DATABASE pampang CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+```
+
+Lalu impor file skema:
+
+```bash
+mysql -u root -p pampang < sql/pampang.sql
+```
+
+---
+
+**3. Konfigurasi koneksi database**
+
+Proyek membaca konfigurasi dari *environment variable*. Buat file `.env` di root proyek:
+
+```env
+DB_HOST=localhost
+DB_USER=root
+DB_PASS=
+DB_NAME=pampang
+```
+
+> Jika menggunakan XAMPP tanpa konfigurasi ENV, nilai default pada `Database.php` sudah menggunakan `localhost`, `root`, tanpa password, dan nama database `pampang`.
+
+---
+
+**4. Aktifkan `mod_rewrite` pada Apache**
+
+Buka `httpd.conf` dan pastikan baris berikut tidak terkomentari:
+
+```apache
+LoadModule rewrite_module modules/mod_rewrite.so
+```
+
+Kemudian pastikan direktori proyek mengizinkan override:
+
+```apache
+<Directory "C:/xampp/htdocs/desa-wisata-pampang">
+    AllowOverride All
+</Directory>
+```
+
+---
+
+**5. Pastikan folder uploads dapat ditulis**
+
+```bash
+# Linux / macOS
+chmod -R 755 public/uploads/
+```
+
+> Di Windows, pastikan folder `public/uploads/galeri/` dan `public/uploads/postingan/` sudah ada dan tidak bersifat *read-only*.
+
+---
+
+**6. Jalankan aplikasi**
+
+Buka browser dan akses:
+
+```
+http://localhost/desa-wisata-pampang/
+```
+
+Untuk mengakses panel admin:
+
+```
+http://localhost/desa-wisata-pampang/login
+```
+
+> Kredensial admin default tersedia di file `sql/pampang.sql` pada bagian data awal tabel `users`.
 
 ---
 
@@ -119,27 +261,27 @@ Desa Pampang berlokasi di Samarinda, Kalimantan Timur. Dalam operasionalnya, des
 ```text
 desa-wisata-pampang/
 ├── app/
-│   ├── core/                  # Komponen inti framework
-│   │   ├── bootstrap.php      # Entry point, autoloader, dan inisialisasi routing
-│   │   ├── Controller.php     # Base controller (view, redirect, session, JSON)
-│   │   ├── Database.php       # Singleton database dengan konfigurasi ENV
-│   │   └── Router.php         # Router berbasis array dengan error handling
-│   ├── controllers/           # Pengendali alur request per modul
-│   │   ├── AdminController.php
-│   │   ├── AgendaController.php
-│   │   ├── AuthController.php
-│   │   ├── GaleriController.php
-│   │   ├── KontakController.php
-│   │   ├── PasswordController.php
-│   │   ├── PostinganController.php
-│   │   └── PublicController.php
-│   ├── models/                # Akses dan logika data
+│   ├── core/                        # Komponen inti custom framework
+│   │   ├── bootstrap.php            # Entry point, autoloader, dan inisialisasi routing
+│   │   ├── Controller.php           # Base controller (view, redirect, session, JSON)
+│   │   ├── Database.php             # Singleton database dengan konfigurasi ENV
+│   │   └── Router.php               # Router berbasis array dengan error handling
+│   ├── controllers/                 # Pengendali alur request per modul
+│   │   ├── AdminController.php      # Dashboard dan navigasi halaman admin
+│   │   ├── AgendaController.php     # CRUD agenda kegiatan
+│   │   ├── AuthController.php       # Login, logout, session management
+│   │   ├── GaleriController.php     # Upload, edit, hapus foto galeri
+│   │   ├── KontakController.php     # Simpan data kontak
+│   │   ├── PasswordController.php   # Ubah password admin
+│   │   ├── PostinganController.php  # CRUD artikel dan berita
+│   │   └── PublicController.php     # Halaman publik (beranda, tentang, publikasi, kontak)
+│   ├── models/                      # Akses dan logika data
 │   │   ├── AgendaModel.php
 │   │   ├── GaleriModel.php
 │   │   ├── KontakModel.php
 │   │   ├── PostinganModel.php
 │   │   └── UserModel.php
-│   └── views/                 # Template tampilan (publik, admin, error)
+│   └── views/                       # Template tampilan
 │       ├── public/
 │       │   ├── beranda/
 │       │   ├── tentang/
@@ -153,18 +295,39 @@ desa-wisata-pampang/
 │       │   ├── dashboard.php
 │       │   ├── login.php
 │       │   └── password.php
-│       └── errors/            # Halaman error (404, 500, generic)
-├── public/                    # Web root (entry point & aset publik)
-│   ├── index.php              # Entry point aplikasi
-│   ├── .htaccess              # URL rewriting Apache
-│   ├── assets/                # CSS, JS, gambar statis
-│   └── uploads/               # File upload pengguna
+│       └── errors/                  # Halaman error (404, 500, generic)
+├── public/                          # Web root
+│   ├── index.php                    # Entry point aplikasi
+│   ├── .htaccess                    # URL rewriting Apache
+│   ├── assets/
+│   │   ├── css/
+│   │   │   ├── style.css            # Stylesheet utama publik
+│   │   │   ├── dayak-theme.css      # Tema visual Dayak Kenyah (palet merah–emas, ornamen)
+│   │   │   ├── admin.css            # Stylesheet panel admin
+│   │   │   ├── bootstrap_min.css    # Bootstrap 5 (bundle lokal)
+│   │   │   └── bootstrap-icons_min.css
+│   │   ├── js/
+│   │   │   ├── main.js              # JS publik (navbar, parallax, audio, scroll reveal, 3D tilt)
+│   │   │   ├── admin.js             # JS admin (modal, file drop, tab switch, search, toast)
+│   │   │   ├── bootstrap_bundle_min.js
+│   │   │   └── vue_global_prod.js   # Vue 3 global build (bundle lokal)
+│   │   ├── img/                     # Aset visual statis
+│   │   │   ├── lamin.svg            # Ilustrasi rumah lamin Dayak
+│   │   │   ├── lamin-potrait.svg
+│   │   │   ├── tarian.svg           # Ilustrasi tarian tradisional
+│   │   │   ├── susur-sungai.svg     # Ilustrasi wisata susur sungai
+│   │   │   ├── motif_dayak.svg      # Ornamen motif Dayak
+│   │   │   └── logo_pesona_indonesia.svg
+│   │   ├── fonts/                   # Font lokal (Inter, Playfair Display)
+│   │   └── audio/
+│   │       └── dayak.mp3            # Musik latar budaya Dayak
+│   └── uploads/                     # File upload dari admin
 │       ├── galeri/
 │       └── postingan/
-├── sql/                       # Skema dan data awal basis data
+├── sql/                             # Skema dan data awal basis data
 ├── documentation/
-│   └── readme-screenshots/    # Cuplikan antarmuka untuk README
-└── README.md                  # Dokumentasi utama proyek
+│   └── readme-screenshots/          # Cuplikan antarmuka untuk README
+└── README.md
 ```
 
 </details>
@@ -181,7 +344,7 @@ desa-wisata-pampang/
 
 </div>
 
-*Laman Beranda menampilkan hero, navigasi utama, agenda terkini, galeri pilihan, dan postingan unggulan.*
+*Laman Beranda menampilkan hero dengan efek parallax, tombol audio latar budaya Dayak, agenda terkini, galeri pilihan, dan postingan unggulan.*
 
 <h3 id="cuplikan-02">2. Tentang</h3>
 
@@ -191,7 +354,7 @@ desa-wisata-pampang/
 
 </div>
 
-*Laman Tentang menampilkan profil desa, latar sejarah, dan narasi kekayaan budaya Desa Pampang.*
+*Laman Tentang menampilkan profil desa, latar sejarah, dan narasi kekayaan budaya Desa Pampang dengan ilustrasi SVG bertema Dayak.*
 
 <h3 id="cuplikan-03">3. Publikasi</h3>
 
@@ -201,7 +364,7 @@ desa-wisata-pampang/
 
 </div>
 
-*Laman Publikasi menampilkan galeri dokumentasi visual dan artikel berita kegiatan desa.*
+*Laman Publikasi menampilkan galeri dokumentasi visual dan kartu artikel berita kegiatan desa.*
 
 <h3 id="cuplikan-04">4. Kontak</h3>
 
@@ -211,7 +374,7 @@ desa-wisata-pampang/
 
 </div>
 
-*Laman Kontak menampilkan agenda kegiatan, alamat, jam operasional, harga, dan kanal komunikasi resmi.*
+*Laman Kontak menampilkan kalender agenda interaktif berbasis Vue, alamat, jam operasional, harga wisata, dan kanal komunikasi resmi.*
 
 <h3 id="cuplikan-05">5. Login Admin</h3>
 
@@ -231,7 +394,7 @@ desa-wisata-pampang/
 
 </div>
 
-*Laman Dashboard Admin menampilkan ringkasan data postingan, agenda, dan galeri yang terkelola.*
+*Laman Dashboard Admin menampilkan ringkasan statistik jumlah postingan, agenda, dan galeri yang terkelola.*
 
 <h3 id="cuplikan-07">7. Manajemen Postingan</h3>
 
@@ -241,7 +404,7 @@ desa-wisata-pampang/
 
 </div>
 
-*Laman Manajemen Postingan menyediakan antarmuka tambah, edit, dan hapus artikel berita desa.*
+*Laman Manajemen Postingan menyediakan antarmuka tambah, edit, dan hapus artikel berita dengan dukungan upload thumbnail (file/URL) dan preview gambar.*
 
 <h3 id="cuplikan-08">8. Manajemen Agenda</h3>
 
@@ -251,7 +414,7 @@ desa-wisata-pampang/
 
 </div>
 
-*Laman Manajemen Agenda menyediakan antarmuka pengelolaan jadwal kegiatan dan pertunjukan budaya.*
+*Laman Manajemen Agenda menyediakan antarmuka pengelolaan jadwal kegiatan dan pertunjukan budaya dengan filter pencarian real-time.*
 
 <h3 id="cuplikan-09">9. Manajemen Galeri</h3>
 
@@ -261,7 +424,7 @@ desa-wisata-pampang/
 
 </div>
 
-*Laman Manajemen Galeri menyediakan antarmuka upload foto (file/URL) dan pengelolaan dokumentasi visual.*
+*Laman Manajemen Galeri menyediakan antarmuka drag-and-drop upload foto (file/URL) dengan preview gambar sebelum disimpan.*
 
 <h3 id="cuplikan-10">10. Manajemen Kontak</h3>
 
@@ -271,7 +434,21 @@ desa-wisata-pampang/
 
 </div>
 
-*Laman Manajemen Kontak menyediakan antarmuka pengelolaan alamat, jam operasional, harga, dan kontak resmi.*
+*Laman Manajemen Kontak menyediakan antarmuka pengelolaan alamat, jam operasional, harga wisata, dan kontak resmi desa.*
+
+---
+
+## Kontributor
+
+<div align="center">
+
+| Muhammad Rizky Febrianto | Chiqo Nanda Rial Pratama | Daffa Syahrani Husain | Marcela |
+|:---:|:---:|:---:|:---:|
+| <img src="https://via.placeholder.com/150/8B1A1A/FFFFFF?text=MRF" width="120" height="120"> | <img src="https://via.placeholder.com/150/D4A017/1A0A00?text=CNR" width="120" height="120"> | <img src="https://via.placeholder.com/150/8B1A1A/FFFFFF?text=DSH" width="120" height="120"> | <img src="https://via.placeholder.com/150/D4A017/1A0A00?text=MCL" width="120" height="120"> |
+| **2409116045** | **2409116046** | **2409116069** | **2409116072** |
+| Sistem Informasi B '24 | Sistem Informasi B '24 | Sistem Informasi B '24 | Sistem Informasi B '24 |
+
+</div>
 
 ---
 
@@ -286,7 +463,7 @@ desa-wisata-pampang/
 | Menggunakan PHP dan MySQL | Basis implementasi backend dan data pada proyek ini |
 | Menggunakan koneksi terpisah (`Database.php`) | Kelas Database Singleton dipisahkan di `app/core/Database.php` dengan konfigurasi ENV |
 | Menggunakan session dan autentikasi admin | Akses admin melalui `/login` dengan session regeneration dan panel `/admin` |
-| Responsif dengan Bootstrap 5 dan interaktif dengan Vue & JS | Digunakan pada antarmuka publik untuk konsistensi tampilan dan interaksi dinamis |
+| Responsif dengan Bootstrap 5 dan interaktif dengan Vue & JS | Bootstrap 5 untuk grid dan utilitas; Vue 3 untuk kalender agenda interaktif; JS kustom untuk parallax, audio latar, scroll reveal, drag-and-drop upload, dan 3D tilt |
 | Nilai tambah MVC | Struktur kode diorganisasi dengan custom framework MVC di folder `app/` |
 
 ---
